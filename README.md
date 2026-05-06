@@ -13,4 +13,5 @@
 ---
 Track list of the addition features to this project :
 - [x] Create the repertisory
-- [ ] Choose between the subject
+- [x] Choose between the subject
+- [ ] Create a plan for the coding
