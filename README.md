@@ -1,6 +1,6 @@
-## Projet_GPI_AV
+# Projet_GPI_AV
 
-# Master GPI project
+## Master GPI project
 
 **3D and 2D RNA structure / structurale bioimagerie**
 
