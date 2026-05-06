@@ -22,5 +22,5 @@ Track list of the project advencement :
 Plan for the project:
 1. Load Librairie
 2. Load PDB file
-3. Create global structure information out of PDB file (Type of Atoms, distance in A between nucleotide ...) Classe Atom - Class HydrogenBond - Classe BasePair - Classe TertiaryCoordinates
+3. Create global structure information out of PDB file : Classe Atom - Class HydrogenBond - Classe BasePair - Classe TertiaryCoordinates
 4. Describe pair base in the bracket notation form -> () means the nucleotide is paired and the sens of the parenthesis help us to say with which nucleotide it's paired . means no link with other nucleotide
