@@ -2,7 +2,7 @@
 
 ## Master GPI project
 
-**3D and 2D RNA structure / structurale bioimagerie**
+**3D and 2D RNA structure / Structurale bioimagerie**
 
 ![RNA](https://www.yourgenome.org/wp-content/uploads/2023/11/1590-shutterstock_2362113623-1920x1047.jpg)
 
