@@ -9,9 +9,9 @@
 - This project is a student project for BioInformatic and Structurale BioImagerie Master 1, there are 2 possible subject to choose from : 
 - **3D and 2D RNA structure** -> Identify 2D structure of RNA based on it's 3D structure (from a PDB file) 
 - **Structurale bioimagerie** -> Micrograph particle extraction
-- 
+
 - This project is done in python and could ask to download libraries if needed.
-- 
+
 ---
 Track list of the project advancement :
 - [x] Create the repertisory
@@ -23,6 +23,7 @@ Track list of the project advancement :
 - [ ] Display directly the bracket inside the .exe ?
 - [ ] Visualize how the pair base are link with an option ?
 
+---
 Plan for the project:
 1. Load Librairie
 2. Load PDB file
