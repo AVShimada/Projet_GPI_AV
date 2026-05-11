@@ -20,15 +20,15 @@ Track list of the project advancement :
 - [x] Create the script
 - [x] Output file directly named by the pdb name (might want to also add it as a header in the file not sure)
 - [x] Make a terminal only : bracket_notation.exe fichier.pdb -> fichier_bracketnotation.txt (Right now need to put the complete PATH)
-- [ ] Relaunch concatenate on windows to get a .exe right now its an executable for Linux
 - [x] Create an interface to drop the pdb file directly (launch a .exe rather than lauching code)
 - [x] Display directly the bracket inside the .exe ?
 - [x] File output -> Directly inside a specialized directory
-- [ ] Visualize how the pair base are link with an option ?
+- [ ] Relaunch concatenate on windows to get a .exe right now its an executable for Linux
 - [ ] Modif UI (police of writing, etc)
 - [ ] Modif github repository -> Script Python + Exec linux/windows / Executable GUI linux/windows / Output PDB 
 - [ ] Zip for Linux and Windows Seperate
 - [ ] Verify which library need to be installed -> tell the user to install them : show a command to directly install them all
+- [ ] Visualize how the pair base are link with an option ?
 
 ---
 Plan for the project:
@@ -39,18 +39,18 @@ Plan for the project:
 5. Describe pair base in the bracket notation form -> () means the nucleotide is paired and the sens of the parenthesis help us to say with which nucleotide it's paired . means no link with other nucleotide
 
 ---
-Command to download pdb file directly:
+**Command to download pdb file directly:**
 curl -O https://files.rcsb/org/view/fichier.pdb
 
 ---
-Command to concatenate the script.py into a .exe: 
+**Command to concatenate the script.py into a .exe:**
 pyinstaller --onefile bracket_notation.py
 
 ---
-Activate the script:
+**Activate the script:**
 chmod +x bracket_notation.py
 
-Launch Script:
+**Launch Script:**
 ./bracket_notation.py FILE.pdb
 
 ---
