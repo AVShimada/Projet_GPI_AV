@@ -24,6 +24,7 @@ Track list of the project advancement :
 - [x] Display directly the bracket inside the .exe ?
 - [x] File output -> Directly inside a specialized directory
 - [ ] Relaunch concatenate on windows to get a .exe right now its an executable for Linux
+- [ ] Get the first line of the PDB file to get the title -> What is this protein to at least show it in terminal
 - [ ] Modif UI (police of writing, etc)
 - [ ] Modif github repository -> Script Python + Exec linux/windows / Executable GUI linux/windows / Output PDB 
 - [ ] Zip for Linux and Windows Seperate
