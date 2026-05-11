@@ -32,5 +32,9 @@ Plan for the project:
 5. Describe pair base in the bracket notation form -> () means the nucleotide is paired and the sens of the parenthesis help us to say with which nucleotide it's paired . means no link with other nucleotide
 
 ---
-Commande for download pdb file directly:
+Commande to download pdb file directly:
 curl -O https://files.rcsb/org/view/fichier.pdb
+
+---
+Row TER of pdbfile -> end of the chain
+We only get the bracket for 1 chain seens they are the same.
