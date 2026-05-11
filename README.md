@@ -18,7 +18,7 @@ Track list of the project advancement :
 - [x] Choose between the subject
 - [x] Create a plan for the coding
 - [x] Create the script
-- [ ] Output file directly named by the pdb name (might want to also add it as a header in the file not sure)
+- [x] Output file directly named by the pdb name (might want to also add it as a header in the file not sure)
 - [ ] Create an interface to drop the pdb file directly (launch a .exe rather than lauching code)
 - [ ] Display directly the bracket inside the .exe ?
 - [ ] Visualize how the pair base are link with an option ?
@@ -27,5 +27,10 @@ Track list of the project advancement :
 Plan for the project:
 1. Load Librairie
 2. Load PDB file
-3. Create global structure information out of PDB file : Classe Atom - Class HydrogenBond - Classe BasePair - Classe TertiaryCoordinates
-4. Describe pair base in the bracket notation form -> () means the nucleotide is paired and the sens of the parenthesis help us to say with which nucleotide it's paired . means no link with other nucleotide
+3. Encoder l'information structurale en POO
+4. The way we are going to do it : Classe Atom - Class HydrogenBond - Classe BasePair - Classe TertiaryCoordinates
+5. Describe pair base in the bracket notation form -> () means the nucleotide is paired and the sens of the parenthesis help us to say with which nucleotide it's paired . means no link with other nucleotide
+
+---
+Commande for download pdb file directly:
+curl -O https://files.rcsb/org/view/fichier.pdb
