@@ -39,13 +39,23 @@ Plan for the project:
 5. Describe pair base in the bracket notation form -> () means the nucleotide is paired and the sens of the parenthesis help us to say with which nucleotide it's paired . means no link with other nucleotide
 
 ---
-Commande to download pdb file directly:
+Command to download pdb file directly:
 curl -O https://files.rcsb/org/view/fichier.pdb
 
 ---
-Row TER of pdbfile -> end of the chain
-We only get the bracket for 1 chain seens they are the same.
+Command to concatenate the script.py into a .exe: 
+pyinstaller --onefile bracket_notation.py
 
 ---
-Commande to concatenate the script.py into a .exe: 
-pyinstaller --onefile bracket_notation.py
+Activate the script:
+chmod +x bracket_notation.py
+
+Launch Script:
+./bracket_notation.py FILE.pdb
+
+---
+Information Random:
+
+Row TER of pdbfile -> end of the chain
+
+We only get the bracket for 1 chain seens they are the same.
