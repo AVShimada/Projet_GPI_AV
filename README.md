@@ -19,9 +19,16 @@ Track list of the project advancement :
 - [x] Create a plan for the coding
 - [x] Create the script
 - [x] Output file directly named by the pdb name (might want to also add it as a header in the file not sure)
-- [ ] Create an interface to drop the pdb file directly (launch a .exe rather than lauching code)
-- [ ] Display directly the bracket inside the .exe ?
+- [x] Make a terminal only : bracket_notation.exe fichier.pdb -> fichier_bracketnotation.txt (Right now need to put the complete PATH)
+- [ ] Relaunch concatenate on windows to get a .exe right now its an executable for Linux
+- [x] Create an interface to drop the pdb file directly (launch a .exe rather than lauching code)
+- [x] Display directly the bracket inside the .exe ?
+- [x] File output -> Directly inside a specialized directory
 - [ ] Visualize how the pair base are link with an option ?
+- [ ] Modif UI (police of writing, etc)
+- [ ] Modif github repository -> Script Python + Exec linux/windows / Executable GUI linux/windows / Output PDB 
+- [ ] Zip for Linux and Windows Seperate
+- [ ] Verify which library need to be installed -> tell the user to install them : show a command to directly install them all
 
 ---
 Plan for the project:
@@ -38,3 +45,7 @@ curl -O https://files.rcsb/org/view/fichier.pdb
 ---
 Row TER of pdbfile -> end of the chain
 We only get the bracket for 1 chain seens they are the same.
+
+---
+Commande to concatenate the script.py into a .exe: 
+pyinstaller --onefile bracket_notation.py
