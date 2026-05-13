@@ -24,7 +24,7 @@ Track list of the project advancement :
 - [x] Display directly the bracket inside the .exe ?
 - [x] File output -> Directly inside a specialized directory
 - [ ] Version that use package to limit of line in the main script
-- [ ] Relaunch concatenate on windows to get a .exe right now its an executable for Linux
+- [ ] Relaunch concatenate on windows to get a .exe right now its only an executable for Linux or terminal python one
 - [ ] Get the first line of the PDB file to get the title -> What is this protein to at least show it in terminal
 - [ ] Modif UI (police of writing, etc)
 - [ ] Modif github repository -> Script Python + Exec linux/windows / Executable GUI linux/windows / Output PDB 
@@ -36,7 +36,7 @@ Track list of the project advancement :
 Plan for the project:
 1. Load Librairie
 2. Load PDB file
-3. Encoder l'information structurale en POO
+3. Structurale information into Oriented Object Programmation (OOP)
 4. The way we are going to do it : Classe Atom - Class HydrogenBond - Classe BasePair - Classe TertiaryCoordinates
 5. Describe pair base in the bracket notation form -> () means the nucleotide is paired and the sens of the parenthesis help us to say with which nucleotide it's paired . means no link with other nucleotide
 
@@ -61,3 +61,5 @@ Information Random:
 Row TER of pdbfile -> end of the chain
 
 We only get the bracket for 1 chain seens they are the same.
+
+Launch env to concatenate and all ... : source ~/venv/bin/activate
