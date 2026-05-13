@@ -10,9 +10,11 @@
 - **3D and 2D RNA structure** -> Identify 2D structure of RNA based on it's 3D structure (from a PDB file) 
 - **Structurale bioimagerie** -> Micrograph particle extraction
 
-[!NOTE] This project is done in python and could ask to download libraries if needed.
+[!NOTE] 
+This project is done in python and could ask to download libraries if needed.
 
-[!TIP] All the ways to get the bracket notation from your RNA pdb file:
+[!TIP] 
+All the ways to get the bracket notation from your RNA pdb file:
 
 1. Terminal : 
 - Python Script : Activate script -> chmod +x bracket_notation.py / Run the script -> ./bracket_notation.py FILE.pdb
@@ -20,7 +22,8 @@
 2. User GUI :
 - bracket_notation_gui / bracket_notation_gui.exe (Linux/Windows) -> Launch your executable -> Drag and drop your PDB file directly inside the application
 
-[!IMPORTANT] Download the zip file specific for your OS
+[!IMPORTANT] 
+Download the zip file specific for your OS
 
 ---
 Track list of the project advancement :
