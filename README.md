@@ -23,6 +23,7 @@ Track list of the project advancement :
 - [x] Create an interface to drop the pdb file directly (launch a .exe rather than lauching code)
 - [x] Display directly the bracket inside the .exe ?
 - [x] File output -> Directly inside a specialized directory
+- [ ] Version that use package to limit of line in the main script
 - [ ] Relaunch concatenate on windows to get a .exe right now its an executable for Linux
 - [ ] Get the first line of the PDB file to get the title -> What is this protein to at least show it in terminal
 - [ ] Modif UI (police of writing, etc)

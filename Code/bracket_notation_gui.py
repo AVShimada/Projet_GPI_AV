@@ -9,7 +9,36 @@ from tkinterdnd2 import DND_FILES, TkinterDnD
 
 
 # =====================================================
-# 1. STRUCTURES
+# 1. LOAD PDB
+# =====================================================
+
+def load_pdb(filepath):
+    atoms = []
+
+    with open(filepath, 'r') as f:
+        for line in f:
+            if line.startswith("ATOM"):
+
+                name = line[12:16].strip()
+                residue = line[17:20].strip()
+                chain = line[21].strip()
+                res_id = int(line[22:26])
+
+                x = float(line[30:38])
+                y = float(line[38:46])
+                z = float(line[46:54])
+
+                element = line[76:78].strip()
+
+                atoms.append(
+                    Atom(name, residue, chain, res_id, x, y, z, element)
+                )
+
+    return atoms
+
+
+# =====================================================
+# 2. STRUCTURES
 # =====================================================
 
 class Atom:
@@ -50,35 +79,6 @@ class TertiaryCoordinates:
     def add_atom(self, atom):
         key = (atom.chain, atom.res_id, atom.residue)
         self.residues[key].append(atom)
-
-
-# =====================================================
-# 2. LOAD PDB
-# =====================================================
-
-def load_pdb(filepath):
-    atoms = []
-
-    with open(filepath, 'r') as f:
-        for line in f:
-            if line.startswith("ATOM"):
-
-                name = line[12:16].strip()
-                residue = line[17:20].strip()
-                chain = line[21].strip()
-                res_id = int(line[22:26])
-
-                x = float(line[30:38])
-                y = float(line[38:46])
-                z = float(line[46:54])
-
-                element = line[76:78].strip()
-
-                atoms.append(
-                    Atom(name, residue, chain, res_id, x, y, z, element)
-                )
-
-    return atoms
 
 
 # =====================================================

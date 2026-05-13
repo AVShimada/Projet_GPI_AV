@@ -9,19 +9,6 @@ import sys
 
 # 2. Load PDB File
 
-class Atom:
-    def __init__(self, name, residue, chain, res_id, x, y, z, element):
-        self.name = name
-        self.residue = residue
-        self.chain = chain
-        self.res_id = res_id
-        self.coord = (x, y, z)
-        self.element = element
-
-    def distance(self, other):
-        return math.sqrt(sum((a - b) ** 2 for a, b in zip(self.coord, other.coord)))
-
-
 def load_pdb(filepath):
     atoms = []
 
@@ -47,8 +34,21 @@ def load_pdb(filepath):
 
     return atoms
 
+# 3. Structurale Information into OOP (object-oriented programming)
 
-# 3. Structure Classes
+# 3.1 Structure Classes
+
+class Atom:
+    def __init__(self, name, residue, chain, res_id, x, y, z, element):
+        self.name = name
+        self.residue = residue
+        self.chain = chain
+        self.res_id = res_id
+        self.coord = (x, y, z)
+        self.element = element
+
+    def distance(self, other):
+        return math.sqrt(sum((a - b) ** 2 for a, b in zip(self.coord, other.coord)))
 
 class HydrogenBond:
     def __init__(self, donor, acceptor, distance):
@@ -82,8 +82,7 @@ class TertiaryCoordinates:
     def get_residue_atoms(self, key):
         return self.residues[key]
 
-
-# 4. Detect Hydrogen Bonds
+# 3.2 Detect Hydrogen Bonds
 
 def detect_hydrogen_bonds(atoms):
 
@@ -108,8 +107,7 @@ def detect_hydrogen_bonds(atoms):
 
     return hbonds
 
-
-# 5. Infer Base Pairs (Simplified)
+# 3.3 Infer Base Pairs
 
 def infer_base_pairs(hbonds):
 
@@ -153,8 +151,7 @@ def infer_base_pairs(hbonds):
 
     return base_pairs
 
-
-# 6. Bracket Notation
+# 4. Bracket Notation
 
 def generate_bracket_notation(base_pairs, residues):
     """
@@ -182,8 +179,7 @@ def generate_bracket_notation(base_pairs, residues):
 
     return ''.join(notation)
 
-
-# 7. Main Pipeline
+# 5. Main Pipeline
 
 def process_pdb(pdb_file):
 
@@ -220,14 +216,14 @@ def process_pdb(pdb_file):
 
     return notation, output_file
 
-# 8. Run the Script
+# 6. Run the Script
 
 if __name__ == "__main__":
 
     # Check argument
     if len(sys.argv) != 2:
         print("Usage:")
-        print("python script.py file.pdb")
+        print(" -> " + sys.argv[0] + "your_pdb_file.pdb")
         sys.exit(1)
 
     pdb_path = sys.argv[1]
