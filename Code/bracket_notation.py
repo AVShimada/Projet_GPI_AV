@@ -7,7 +7,7 @@ import math
 import os
 import sys
 
-# 2. Load PDB File
+# 2. Load PDB File & Extract Atoms
 
 def load_pdb(filepath):
     atoms = []

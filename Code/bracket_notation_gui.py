@@ -9,7 +9,7 @@ from tkinterdnd2 import DND_FILES, TkinterDnD
 
 
 # =====================================================
-# 1. LOAD PDB
+# 1. LOAD PDB & Extract Atoms
 # =====================================================
 
 def load_pdb(filepath):
