@@ -16,7 +16,7 @@ def load_pdb(filepath):
         for line in f:
             if line.startswith("ATOM"):
 
-                name = line[12:16].strip()
+                name = line[12:16].strip() # strip remove all the spaces
                 residue = line[17:20].strip()
                 chain = line[21].strip()
                 res_id = int(line[22:26])

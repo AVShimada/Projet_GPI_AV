@@ -10,7 +10,17 @@
 - **3D and 2D RNA structure** -> Identify 2D structure of RNA based on it's 3D structure (from a PDB file) 
 - **Structurale bioimagerie** -> Micrograph particle extraction
 
-- This project is done in python and could ask to download libraries if needed.
+[!NOTE] This project is done in python and could ask to download libraries if needed.
+
+[!TIP] All the ways to get the bracket notation from your RNA pdb file:
+
+1. Terminal : 
+- Python Script : Activate script -> chmod +x bracket_notation.py / Run the script -> ./bracket_notation.py FILE.pdb
+- Executable : bracket_notation / bracket_notation.exe (Linux/Windows) Run the script -> ./bracket_notation FILE.pdb / ./bracket_notation.exe FILE.pdb
+2. User GUI :
+- bracket_notation_gui / bracket_notation_gui.exe (Linux/Windows) -> Launch your executable -> Drag and drop your PDB file directly inside the application
+
+[!IMPORTANT] Download the zip file specific for your OS
 
 ---
 Track list of the project advancement :
@@ -23,6 +33,7 @@ Track list of the project advancement :
 - [x] Create an interface to drop the pdb file directly (launch a .exe rather than lauching code)
 - [x] Display directly the bracket inside the .exe ?
 - [x] File output -> Directly inside a specialized directory
+- [ ] Annotation of the code
 - [ ] Version that use package to limit of line in the main script
 - [ ] Relaunch concatenate on windows to get a .exe right now its only an executable for Linux or terminal python one
 - [ ] Get the first line of the PDB file to get the title -> What is this protein to at least show it in terminal
@@ -63,3 +74,21 @@ Row TER of pdbfile -> end of the chain
 We only get the bracket for 1 chain seens they are the same.
 
 Launch env to concatenate and all ... : source ~/venv/bin/activate
+
+COLUMNS        DATA  TYPE    FIELD        DEFINITION
+-------------------------------------------------------------------------------------
+1 -  6         Record name   "ATOM  "
+7 - 11        Integer       serial       Atom  serial number.
+13 - 16        Atom          name         Atom name.
+17             Character     altLoc       Alternate location indicator.
+18 - 20        Residue name  resName      Residue name.
+22             Character     chainID      Chain identifier.
+23 - 26        Integer       resSeq       Residue sequence number.
+27             AChar         iCode        Code for insertion of residues.
+31 - 38        Real(8.3)     x            Orthogonal coordinates for X in Angstroms.
+39 - 46        Real(8.3)     y            Orthogonal coordinates for Y in Angstroms.
+47 - 54        Real(8.3)     z            Orthogonal coordinates for Z in Angstroms.
+55 - 60        Real(6.2)     occupancy    Occupancy.
+61 - 66        Real(6.2)     tempFactor   Temperature  factor.
+77 - 78        LString(2)    element      Element symbol, right-justified.
+79 - 80        LString(2)    charge       Charge  on the atom.
