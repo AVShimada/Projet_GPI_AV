@@ -8,7 +8,7 @@
 
 - This project is a student project for BioInformatic and Structurale BioImagerie Master 1, there are 2 possible subject to choose from : 
 - **3D and 2D RNA structure** -> Identify 2D structure of RNA based on it's 3D structure (from a PDB file) 
-- **Structurale bioimagerie** -> Micrograph particle extraction
+- **Structurale bioimagerie** -> Micrograph particle extraction : https://github.com/inzhirmelsh/GPI
 
 >[!NOTE] 
 >This project is done in python and could ask to download libraries if needed.
@@ -41,6 +41,7 @@ Track list of the project advancement :
 - [x] Relaunch concatenate on windows to get a .exe right now its only an executable for Linux or terminal python one
 - [x] Modif github repository -> Script Python + Exec linux/windows / Executable GUI linux/windows / Output PDB 
 - [x] Zip for Linux and Windows Seperate
+- [ ] RESULTAT DOIT AVOIR SEQUENCE ARN + BRACKET PAS JUSTE BRACKET /!\
 - [ ] Annotation of the code
 - [ ] Version that use package to limit of line in the main script
 - [ ] Get the first line of the PDB file to get the title -> What is this protein to at least show it in terminal
