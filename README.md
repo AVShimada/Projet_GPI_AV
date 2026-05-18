@@ -19,10 +19,10 @@
 >1. Terminal : 
 
 >- Python Script : Activate script -> chmod +x bracket_notation.py / Run the script -> ./bracket_notation.py FILE.pdb
->- Executable : bracket_notation / bracket_notation.exe (Linux/Windows) Run the script -> ./bracket_notation FILE.pdb / ./bracket_notation.exe FILE.pdb
+>- Executable : bracket_notation / bracket_notation.exe (Linux/Windows) Run the script -> ./bracket_notation FILE.pdb or ./bracket_notation.exe FILE.pdb
 
 >2. User GUI :
->- bracket_notation_gui / bracket_notation_gui.exe (Linux/Windows) -> Launch your executable -> Drag and drop your PDB file directly inside the application
+>- bracket_notation_gui or bracket_notation_gui.exe (Linux/Windows) -> Launch your executable -> Drag and drop your PDB file directly inside the application
 
 >[!IMPORTANT] 
 >Download the zip file specific for your OS
@@ -47,6 +47,7 @@ Track list of the project advancement :
 - [ ] Modif UI (police of writing, etc)
 - [ ] Verify which library need to be installed -> tell the user to install them : show a command to directly install them all
 - [ ] Visualize how the pair base are link with an option ?
+- [ ] Why Cmd open behind the application on Windows ? (FIX if needed)
 
 ---
 Plan for the project:
