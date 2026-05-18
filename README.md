@@ -72,15 +72,6 @@ chmod +x bracket_notation.py
 ./bracket_notation.py FILE.pdb
 
 ---
-Information Random:
-
-Row TER of pdbfile -> end of the chain
-
-We only get the bracket for 1 chain seens they are the same.
-
-Launch env to concatenate and all ... : source ~/venv/bin/activate
-
-link site for github readme format : https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
 | COLUMNS   | DATA TYPE     | FIELD      | DEFINITION |
 |-----------|---------------|------------|------------|
@@ -99,3 +90,14 @@ link site for github readme format : https://docs.github.com/fr/get-started/writ
 | 61 - 66   | Real(6.2)     | tempFactor | Temperature factor |
 | 77 - 78   | LString(2)    | element    | Element symbol, right-justified |
 | 79 - 80   | LString(2)    | charge     | Charge on the atom |
+
+---
+Information Random:
+
+Row TER of pdbfile -> end of the chain
+
+We only get the bracket for 1 chain seens they are the same.
+
+Launch env to concatenate and all ... : source ~/venv/bin/activate
+
+link site for github readme format : https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
