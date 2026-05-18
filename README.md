@@ -38,13 +38,13 @@ Track list of the project advancement :
 - [x] Create an interface to drop the pdb file directly (launch a .exe rather than lauching code)
 - [x] Display directly the bracket inside the .exe ?
 - [x] File output -> Directly inside a specialized directory
+- [x] Relaunch concatenate on windows to get a .exe right now its only an executable for Linux or terminal python one
+- [x] Modif github repository -> Script Python + Exec linux/windows / Executable GUI linux/windows / Output PDB 
+- [x] Zip for Linux and Windows Seperate
 - [ ] Annotation of the code
 - [ ] Version that use package to limit of line in the main script
-- [ ] Relaunch concatenate on windows to get a .exe right now its only an executable for Linux or terminal python one
 - [ ] Get the first line of the PDB file to get the title -> What is this protein to at least show it in terminal
 - [ ] Modif UI (police of writing, etc)
-- [ ] Modif github repository -> Script Python + Exec linux/windows / Executable GUI linux/windows / Output PDB 
-- [ ] Zip for Linux and Windows Seperate
 - [ ] Verify which library need to be installed -> tell the user to install them : show a command to directly install them all
 - [ ] Visualize how the pair base are link with an option ?
 
@@ -72,6 +72,7 @@ chmod +x bracket_notation.py
 ./bracket_notation.py FILE.pdb
 
 ---
+**PDB FILE FORMAT:**
 
 | COLUMNS   | DATA TYPE     | FIELD      | DEFINITION |
 |-----------|---------------|------------|------------|
