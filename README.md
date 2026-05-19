@@ -120,13 +120,12 @@ https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-wr
 | 79 - 80   | LString(2)    | charge     | Charge on the atom |
 
 ---
-Expected Structure for 8D28.pdb
+**Expected Structure for 8D28.pdb:**
+
+Sequence:
+
 GGCGAUACCAGCCGAAAGGCCCUUGGCAGCGCC
+
+Dot Bracket Notation:
+
 ((((...((.(((....)))....))...))))
-
----
-Information Random:
-
-Row TER of pdbfile -> end of the chain
-
-We only get the bracket for 1 chain seens they are the same
