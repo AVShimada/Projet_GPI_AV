@@ -13,21 +13,6 @@
 >[!NOTE] 
 >This project is done in python and could ask to download libraries if needed.
 
->[!TIP] 
->All the ways to get the bracket notation from your RNA pdb file:
-
->1. Terminal : 
-
->- Python Script : Activate script -> chmod +x bracket_notation.py / Run the script -> ./bracket_notation.py FILE.pdb
->- Executable : bracket_notation / bracket_notation.exe (Linux/Windows) Run the script -> ./bracket_notation FILE.pdb or ./bracket_notation.exe FILE.pdb
-
->2. User GUI :
->- bracket_notation_gui or bracket_notation_gui.exe (Linux/Windows) -> Launch your executable -> Drag and drop your PDB file directly inside the application
-
->[!IMPORTANT] 
->Download the zip file specific for your OS
-
-TEST:
 >[!TIP]
 >All the ways to get the bracket notation from your RNA PDB file:
 >
@@ -55,6 +40,9 @@ TEST:
 >2. **GUI application**
 >   - `bracket_notation_gui` or `bracket_notation_gui.exe` (`Linux` / `Windows`)
 >   - Launch the application and drag & drop your PDB file directly into the window.
+
+>[!IMPORTANT] 
+>Download the zip file specific for your OS
 
 ---
 Track list of the project advancement :
