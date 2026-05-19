@@ -89,6 +89,7 @@ pyinstaller --onefile bracket_notation.py
 
 Windows:
 py -m PyInstaller --onefile bracket_notation.py
+
 ---
 **Activate the script:**
 chmod +x bracket_notation.py
@@ -126,10 +127,12 @@ https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-wr
 ---
 **Expected Structure for 8D28.pdb:**
 
-Sequence:
+    ```bash
+    Sequence:
 
-GGCGAUACCAGCCGAAAGGCCCUUGGCAGCGCC
+    GGCGAUACCAGCCGAAAGGCCCUUGGCAGCGCC
 
-Dot Bracket Notation:
+    Dot Bracket Notation:
 
-((((...((.(((....)))....))...))))
+    ((((...((.(((....)))....))...))))
+    ```
