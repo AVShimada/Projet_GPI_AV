@@ -223,14 +223,14 @@ def process_pdb(pdb_file):
     )
 
     print("RNA Sequence:\n")
-    print(sequence + "\n")
+    print(sequence + "\n\n")
     
     print("Bracket Notation:\n")
     print(notation + "\n")
     
     with open(output_file, "w") as f:
         f.write("RNA Sequence:\n")
-        f.write(sequence + "\n")
+        f.write(sequence + "\n\n")
         f.write("Bracket Notation:\n")
         f.write(notation + "\n")
         

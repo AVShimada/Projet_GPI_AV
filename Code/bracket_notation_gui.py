@@ -257,8 +257,8 @@ def drop(event):
             "end",
             f"SUCCESS\n\n"
             f"Saved file:\n{output_file}\n\n"
-            f"Length: {len(notation)}\n\n"
-            f"Bracket Notation:\n\n{notation}\n"
+            f"RNA Sequence:\n{extract_sequence(load_pdb(file_path))}\n\n"
+            f"Bracket Notation:\n{notation}\n"
         )
 
         result_label.config(state="disabled")
