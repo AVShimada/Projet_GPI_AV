@@ -84,8 +84,11 @@ curl -O https://files.rcsb/org/view/fichier.pdb
 
 ---
 **Command to concatenate the script.py into a .exe:**
+Linux:
 pyinstaller --onefile bracket_notation.py
 
+Windows:
+py -m PyInstaller --onefile bracket_notation.py
 ---
 **Activate the script:**
 chmod +x bracket_notation.py
