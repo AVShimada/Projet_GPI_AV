@@ -6,9 +6,9 @@
 
 ![RNA](https://www.yourgenome.org/wp-content/uploads/2023/11/1590-shutterstock_2362113623-1920x1047.jpg)
 
-- This project is a student project for BioInformatic and Structurale BioImagerie Master 1, there are 2 possible subject to choose from : 
-- **3D and 2D RNA structure** -> Identify 2D structure of RNA based on it's 3D structure (from a PDB file) 
-- **Structurale bioimagerie** -> Micrograph particle extraction : https://github.com/inzhirmelsh/GPI
+1. This project is a student project for BioInformatic and Structurale BioImagerie Master 1, there are 2 possible subject to choose from : 
+    - **3D and 2D RNA structure** -> Identify 2D structure of RNA based on it's 3D structure (from a PDB file) 
+    - **Structurale bioimagerie** -> Micrograph particle extraction : https://github.com/inzhirmelsh/GPI
 
 >[!NOTE] 
 >This project is done in python and could ask to download libraries if needed.
@@ -26,6 +26,35 @@
 
 >[!IMPORTANT] 
 >Download the zip file specific for your OS
+
+TEST:
+>[!TIP]
+>All the ways to get the bracket notation from your RNA PDB file:
+>
+>1. **Terminal**
+>   - **Python script**  
+>     Activate the script:
+>     ```bash
+>     chmod +x bracket_notation.py
+>     ```
+>     Run it:
+>     ```bash
+>     ./bracket_notation.py FILE.pdb
+>     ```
+>
+>   - **Executable** (`Linux` / `Windows`)  
+>     Run:
+>     ```bash
+>     ./bracket_notation FILE.pdb
+>     ```
+>     or
+>     ```bash
+>     ./bracket_notation.exe FILE.pdb
+>     ```
+>
+>2. **GUI application**
+>   - `bracket_notation_gui` or `bracket_notation_gui.exe` (`Linux` / `Windows`)
+>   - Launch the application and drag & drop your PDB file directly into the window.
 
 ---
 Track list of the project advancement :
@@ -74,6 +103,12 @@ chmod +x bracket_notation.py
 **Launch Script:**
 ./bracket_notation.py FILE.pdb
 
+**Launch env to concatenate python into executable**
+source ~/venv/bin/activate
+
+**Link site for github readme format :**
+https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+
 ---
 **PDB FILE FORMAT:**
 
@@ -100,8 +135,4 @@ Information Random:
 
 Row TER of pdbfile -> end of the chain
 
-We only get the bracket for 1 chain seens they are the same.
-
-Launch env to concatenate and all ... : source ~/venv/bin/activate
-
-link site for github readme format : https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+We only get the bracket for 1 chain seens they are the same
