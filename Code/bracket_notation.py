@@ -7,36 +7,7 @@ import math
 import os
 import sys
 
-# 2. Load PDB File & Extract Atoms
-
-def load_pdb(filepath):
-    atoms = []
-
-    with open(filepath, 'r') as f:
-        for line in f:
-            if line.startswith("ATOM"):
-
-                name = line[12:16].strip() # strip remove all the spaces
-                residue = line[17:20].strip()
-                chain = line[21].strip()
-                res_id = int(line[22:26])
-
-                x = float(line[30:38])
-                y = float(line[38:46])
-                z = float(line[46:54])
-
-                element = line[76:78].strip()
-
-                atoms.append(
-                    Atom(name, residue, chain, res_id,
-                         x, y, z, element)
-                )
-
-    return atoms
-
-# 3. Structurale Information into OOP (object-oriented programming)
-
-# 3.1 Structure Classes
+# 2. Creation of the different Classes
 
 class Atom:
     def __init__(self, name, residue, chain, res_id, x, y, z, element):
@@ -81,6 +52,34 @@ class TertiaryCoordinates:
 
     def get_residue_atoms(self, key):
         return self.residues[key]
+
+# 3. Structurale Information into OOP (object-oriented programming) -> Load PDB file & Extract all the data & process it for bracket notation
+# 3.1 Load PDB File & Extract Atoms
+
+def load_pdb(filepath):
+    atoms = []
+
+    with open(filepath, 'r') as f:
+        for line in f:
+            if line.startswith("ATOM"):
+
+                name = line[12:16].strip() # strip remove all the spaces
+                residue = line[17:20].strip()
+                chain = line[21].strip()
+                res_id = int(line[22:26])
+
+                x = float(line[30:38])
+                y = float(line[38:46])
+                z = float(line[46:54])
+
+                element = line[76:78].strip()
+
+                atoms.append(
+                    Atom(name, residue, chain, res_id,
+                         x, y, z, element)
+                )
+
+    return atoms
 
 # 3.2 Detect Hydrogen Bonds
 
@@ -151,12 +150,28 @@ def infer_base_pairs(hbonds):
 
     return base_pairs
 
+# 3.4 Extract the sequence
+
+def extract_sequence(atoms):
+
+    residue_map = {}
+
+    for atom in atoms:
+
+        if atom.res_id not in residue_map:
+            residue_map[atom.res_id] = atom.residue
+
+    # ordre des résidus
+    sorted_res = sorted(residue_map.items())
+
+    # conversion en séquence
+    sequence = ''.join(res for _, res in sorted_res)
+
+    return sequence
+
 # 4. Bracket Notation
 
 def generate_bracket_notation(base_pairs, residues):
-    """
-    residues: sorted list of residue IDs
-    """
 
     pairing_map = {}
 
@@ -194,6 +209,8 @@ def process_pdb(pdb_file):
 
     residues = sorted(set(atom.res_id for atom in atoms))
 
+    sequence = extract_sequence(atoms)
+
     notation = generate_bracket_notation(base_pairs, residues)
 
     pdb_name = os.path.splitext(os.path.basename(pdb_file))[0]
@@ -205,6 +222,9 @@ def process_pdb(pdb_file):
         f"{pdb_name}_bracketnotation.txt"
     )
 
+    print("RNA Sequence:\n")
+    print(sequence + "\n")
+    
     print("Bracket Notation:\n")
     print(notation + "\n")
     

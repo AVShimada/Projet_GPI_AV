@@ -132,9 +132,29 @@ def infer_base_pairs(hbonds):
 
     return base_pairs
 
+# =====================================================
+# 5. EXTRACT RNA SEQUENCE
+# =====================================================
+
+def extract_sequence(atoms):
+
+    residue_map = {}
+
+    for atom in atoms:
+
+        if atom.res_id not in residue_map:
+            residue_map[atom.res_id] = atom.residue
+
+    # ordre des résidus
+    sorted_res = sorted(residue_map.items())
+
+    # conversion en séquence
+    sequence = ''.join(res for _, res in sorted_res)
+
+    return sequence
 
 # =====================================================
-# 5. BRACKET NOTATION
+# 6. BRACKET NOTATION
 # =====================================================
 
 def generate_bracket_notation(base_pairs, residues):
@@ -158,7 +178,7 @@ def generate_bracket_notation(base_pairs, residues):
 
 
 # =====================================================
-# 6. PIPELINE
+# 7. PIPELINE
 # =====================================================
 
 def process_pdb(pdb_file):
@@ -174,6 +194,8 @@ def process_pdb(pdb_file):
 
     residues = sorted(set(atom.res_id for atom in atoms))
 
+    sequence = extract_sequence(atoms)
+
     notation = generate_bracket_notation(base_pairs, residues)
 
     pdb_name = os.path.splitext(os.path.basename(pdb_file))[0]
@@ -185,15 +207,23 @@ def process_pdb(pdb_file):
         f"{pdb_name}_bracketnotation.txt"
     )
 
+    print("RNA Sequence:\n")
+    print(sequence + "\n")
+    
+    print("Bracket Notation:\n")
+    print(notation + "\n")
+    
     with open(output_file, "w") as f:
         f.write("Bracket Notation:\n")
         f.write(notation + "\n")
+        
+    print(f"Bracket notation saved to: {output_file}")
 
     return notation, output_file
 
 
 # =====================================================
-# 7. GUI
+# 8. GUI
 # =====================================================
 
 def drop(event):
@@ -237,7 +267,7 @@ def drop(event):
 
 
 # =====================================================
-# 8. WINDOW
+# 9. WINDOW
 # =====================================================
 
 root = TkinterDnD.Tk()

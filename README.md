@@ -57,6 +57,7 @@ Plan for the project:
 3. Structurale information into Oriented Object Programmation (OOP)
 4. The way we are going to do it : Classe Atom - Class HydrogenBond - Classe BasePair - Classe TertiaryCoordinates
 5. Describe pair base in the bracket notation form -> () means the nucleotide is paired and the sens of the parenthesis help us to say with which nucleotide it's paired . means no link with other nucleotide
+6. Put . for every nucleotide then replace . with () for basepairs detected
 
 ---
 **Command to download pdb file directly:**
