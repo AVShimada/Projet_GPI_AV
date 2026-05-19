@@ -60,6 +60,7 @@ Track list of the project advancement :
 - [x] Modif github repository -> Script Python + Exec linux/windows / Executable GUI linux/windows / Output PDB 
 - [x] Zip for Linux and Windows Seperate
 - [x] RESULTAT DOIT AVOIR SEQUENCE ARN + BRACKET PAS JUSTE BRACKET /!\
+- [ ] Add bpseq format : https://zeus.few.vu.nl/programs/k2nwww/static/data_formats.html
 - [ ] Annotation of the code
 - [ ] Version that use package to limit of line in the main script
 - [ ] Get the first line of the PDB file to get the title -> What is this protein to at least show it in terminal
