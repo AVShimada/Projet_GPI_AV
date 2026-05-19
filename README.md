@@ -128,12 +128,7 @@ https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-wr
 ---
 **Expected Structure for 8D28.pdb:**
 
->    ```bash
->    Sequence:
->
->    GGCGAUACCAGCCGAAAGGCCCUUGGCAGCGCC
->
->    Dot Bracket Notation:
->
->    ((((...((.(((....)))....))...))))
->    ```
+```txt
+Sequence:             GGCGAUACCAGCCGAAAGGCCCUUGGCAGCGCC
+Dot-Bracket Notation: ((((...((.(((....)))....))...))))
+```
