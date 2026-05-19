@@ -120,6 +120,11 @@ https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-wr
 | 79 - 80   | LString(2)    | charge     | Charge on the atom |
 
 ---
+Expected Structure for 8D28.pdb
+GGCGAUACCAGCCGAAAGGCCCUUGGCAGCGCC
+((((...((.(((....)))....))...))))
+
+---
 Information Random:
 
 Row TER of pdbfile -> end of the chain

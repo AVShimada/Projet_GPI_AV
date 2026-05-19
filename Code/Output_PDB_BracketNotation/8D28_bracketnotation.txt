@@ -1,4 +1,5 @@
 RNA Sequence:
 GGCGAUACCAGCCGAAAGGCCCUUGGCAGCGCC
+
 Bracket Notation:
-((((((((((((((((()))))((()())))))
+((((...((.(((....)))....))...))))

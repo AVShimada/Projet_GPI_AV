@@ -7,39 +7,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinterdnd2 import DND_FILES, TkinterDnD
 
-
-# =====================================================
-# 1. LOAD PDB & Extract Atoms
-# =====================================================
-
-def load_pdb(filepath):
-    atoms = []
-
-    with open(filepath, 'r') as f:
-        for line in f:
-            if line.startswith("ATOM"):
-
-                name = line[12:16].strip()
-                residue = line[17:20].strip()
-                chain = line[21].strip()
-                res_id = int(line[22:26])
-
-                x = float(line[30:38])
-                y = float(line[38:46])
-                z = float(line[46:54])
-
-                element = line[76:78].strip()
-
-                atoms.append(
-                    Atom(name, residue, chain, res_id, x, y, z, element)
-                )
-
-    return atoms
-
-
-# =====================================================
-# 2. STRUCTURES
-# =====================================================
+# 2. Creation of the different Classes
 
 class Atom:
     def __init__(self, name, residue, chain, res_id, x, y, z, element):
@@ -52,7 +20,6 @@ class Atom:
 
     def distance(self, other):
         return math.sqrt(sum((a - b) ** 2 for a, b in zip(self.coord, other.coord)))
-
 
 class HydrogenBond:
     def __init__(self, donor, acceptor, distance):
@@ -71,6 +38,9 @@ class BasePair:
         self.res1_name = res1_name
         self.res2_name = res2_name
 
+    def __repr__(self):
+        return f"{self.res1_name}{self.res1_id}-{self.res2_name}{self.res2_id}"
+
 
 class TertiaryCoordinates:
     def __init__(self):
@@ -80,61 +50,217 @@ class TertiaryCoordinates:
         key = (atom.chain, atom.res_id, atom.residue)
         self.residues[key].append(atom)
 
+    def get_residue_atoms(self, key):
+        return self.residues[key]
 
-# =====================================================
-# 3. H-BONDS
-# =====================================================
+# 3. Structurale Information into OOP (object-oriented programming) -> Load PDB file & Extract all the data & process it for bracket notation
+# 3.1 Load PDB File & Extract Atoms
+
+def load_pdb(filepath):
+    atoms = []
+
+    with open(filepath, 'r') as f:
+        for line in f:
+            if line.startswith("ATOM"):
+
+                name = line[12:16].strip() # strip remove all the spaces
+                residue = line[17:20].strip()
+                chain = line[21].strip()
+                res_id = int(line[22:26])
+
+                x = float(line[30:38])
+                y = float(line[38:46])
+                z = float(line[46:54])
+
+                element = line[76:78].strip()
+
+                atoms.append(
+                    Atom(name, residue, chain, res_id,
+                         x, y, z, element)
+                )
+
+    return atoms
+
+# 3.2 Detect Hydrogen Bonds
 
 def detect_hydrogen_bonds(atoms):
+
+    BACKBONE_ATOMS = {"O5'", "O3'", "O4'", "O2'","OP1", "OP2", "P"}
+
+    VALID_ATOM_PAIRS = {
+
+        ("A", "U"): {("N6", "O4"),("N1", "N3")},
+
+        ("U", "A"): {("O4", "N6"),("N3", "N1")},
+
+        ("G", "C"): {("O6", "N4"),("N1", "N3"),("N2", "O2")},
+
+        ("C", "G"): {("N4", "O6"),("N3", "N1"),("O2", "N2")},
+
+        ("G", "U"): {("O6", "N3"),("N1", "O2")},
+
+        ("U", "G"): {("N3", "O6"),("O2", "N1")}
+        
+    }
+
     hbonds = []
 
+    seen_atom_pairs = set()
+
     for i, atom1 in enumerate(atoms):
+
+        # uniquement N/O
         if atom1.element not in ['N', 'O']:
             continue
 
+        # exclure backbone
+        if atom1.name in BACKBONE_ATOMS:
+            continue
+
         for atom2 in atoms[i + 1:]:
+
             if atom2.element not in ['N', 'O']:
                 continue
 
-            dist = atom1.distance(atom2)
-            hbond = HydrogenBond(atom1, atom2, dist)
+            if atom2.name in BACKBONE_ATOMS:
+                continue
 
-            if hbond.is_valid():
+            # même résidu
+            if (
+                atom1.chain == atom2.chain
+                and
+                atom1.res_id == atom2.res_id
+            ):
+                continue
+
+            # éviter résidus proches
+            if abs(atom1.res_id - atom2.res_id) <= 3:
+                continue
+
+            pair_type = (
+                atom1.residue,
+                atom2.residue
+            )
+
+            # seulement AU / CG / GU
+            if pair_type not in VALID_ATOM_PAIRS:
+                continue
+
+            # vérifier vrais atomes Watson-Crick
+            if (
+                atom1.name,
+                atom2.name
+            ) not in VALID_ATOM_PAIRS[pair_type]:
+                continue
+
+            # éviter doublons
+            atom_pair = tuple(sorted([
+                (atom1.res_id, atom1.name),
+                (atom2.res_id, atom2.name)
+            ]))
+
+            if atom_pair in seen_atom_pairs:
+                continue
+
+            seen_atom_pairs.add(atom_pair)
+
+            dist = atom1.distance(atom2)
+
+            hbond = HydrogenBond(
+                atom1,
+                atom2,
+                dist
+            )
+
+            # cutoff imposé
+            if hbond.is_valid(cutoff=3.0):
+
                 hbonds.append(hbond)
 
     return hbonds
 
-
-# =====================================================
-# 4. BASE PAIRS
-# =====================================================
+# 3.3 Infer Base Pairs
 
 def infer_base_pairs(hbonds):
+
+    EXPECTED_HBONDS = {
+        ("C", "G"): 3,
+        ("G", "C"): 3,
+        ("A", "U"): 2,
+        ("U", "A"): 2,
+        ("G", "U"): 2,
+        ("U", "G"): 2
+    }
+
     pair_counts = defaultdict(int)
 
     for hb in hbonds:
-        res1 = (hb.donor.chain, hb.donor.res_id, hb.donor.residue)
-        res2 = (hb.acceptor.chain, hb.acceptor.res_id, hb.acceptor.residue)
 
-        if res1 != res2:
-            pair_counts[(res1, res2)] += 1
-            pair_counts[(res2, res1)] += 1
+        res1 = (
+            hb.donor.chain,
+            hb.donor.res_id,
+            hb.donor.residue
+        )
+
+        res2 = (
+            hb.acceptor.chain,
+            hb.acceptor.res_id,
+            hb.acceptor.residue
+        )
+
+        if res1 == res2:
+            continue
+
+        # évite voisins proches
+        if abs(res1[1] - res2[1]) <= 3:
+            continue
+
+        pair_type = (res1[2], res2[2])
+
+        # seulement AU / CG / GU
+        if pair_type not in EXPECTED_HBONDS:
+            continue
+
+        pair = tuple(sorted([res1, res2]))
+
+        pair_counts[pair] += 1
 
     base_pairs = []
-    visited = set()
 
-    for (res1, res2), count in pair_counts.items():
-        if count >= 2 and (res2, res1) not in visited:
-            base_pairs.append(
-                BasePair(res1[1], res2[1], res1[2], res2[2])
+    used = set()
+
+    for (res1, res2), count in sorted(
+        pair_counts.items(),
+        key=lambda x: -x[1]
+    ):
+
+        pair_type = (res1[2], res2[2])
+
+        required = EXPECTED_HBONDS[pair_type]
+
+        # nombre minimal de H-bonds
+        if count < required:
+            continue
+
+        # un seul partenaire
+        if res1 in used or res2 in used:
+            continue
+
+        base_pairs.append(
+            BasePair(
+                res1[1],
+                res2[1],
+                res1[2],
+                res2[2]
             )
-            visited.add((res1, res2))
+        )
+
+        used.add(res1)
+        used.add(res2)
 
     return base_pairs
 
-# =====================================================
-# 5. EXTRACT RNA SEQUENCE
-# =====================================================
+# 3.4 Extract the sequence
 
 def extract_sequence(atoms):
 
@@ -153,9 +279,7 @@ def extract_sequence(atoms):
 
     return sequence
 
-# =====================================================
-# 6. BRACKET NOTATION
-# =====================================================
+# 4. Bracket Notation
 
 def generate_bracket_notation(base_pairs, residues):
 
@@ -167,19 +291,20 @@ def generate_bracket_notation(base_pairs, residues):
 
     notation = ['.'] * len(residues)
 
-    index_map = {res_id: i for i, res_id in enumerate(residues)}
+    index_map = {
+        res_id: i
+        for i, res_id in enumerate(residues)
+    }
 
     for res1, res2 in pairing_map.items():
+
         if res1 < res2:
             notation[index_map[res1]] = '('
             notation[index_map[res2]] = ')'
 
     return ''.join(notation)
 
-
-# =====================================================
-# 7. PIPELINE
-# =====================================================
+# 5. Main Pipeline
 
 def process_pdb(pdb_file):
 
@@ -208,14 +333,14 @@ def process_pdb(pdb_file):
     )
 
     print("RNA Sequence:\n")
-    print(sequence + "\n")
+    print(sequence + "\n\n")
     
     print("Bracket Notation:\n")
     print(notation + "\n")
     
     with open(output_file, "w") as f:
         f.write("RNA Sequence:\n")
-        f.write(sequence + "\n")
+        f.write(sequence + "\n\n")
         f.write("Bracket Notation:\n")
         f.write(notation + "\n")
         
@@ -223,10 +348,7 @@ def process_pdb(pdb_file):
 
     return notation, output_file
 
-
-# =====================================================
-# 8. GUI
-# =====================================================
+# 6. GUI
 
 def drop(event):
 
@@ -268,9 +390,9 @@ def drop(event):
         messagebox.showerror("Error", str(e))
 
 
-# =====================================================
-# 9. WINDOW
-# =====================================================
+
+# 7. WINDOW
+
 
 root = TkinterDnD.Tk()
 root.title("PDB Bracket Notation")

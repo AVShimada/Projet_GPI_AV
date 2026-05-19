@@ -85,11 +85,36 @@ def load_pdb(filepath):
 
 def detect_hydrogen_bonds(atoms):
 
+    BACKBONE_ATOMS = {"O5'", "O3'", "O4'", "O2'","OP1", "OP2", "P"}
+
+    VALID_ATOM_PAIRS = {
+
+        ("A", "U"): {("N6", "O4"),("N1", "N3")},
+
+        ("U", "A"): {("O4", "N6"),("N3", "N1")},
+
+        ("G", "C"): {("O6", "N4"),("N1", "N3"),("N2", "O2")},
+
+        ("C", "G"): {("N4", "O6"),("N3", "N1"),("O2", "N2")},
+
+        ("G", "U"): {("O6", "N3"),("N1", "O2")},
+
+        ("U", "G"): {("N3", "O6"),("O2", "N1")}
+        
+    }
+
     hbonds = []
+
+    seen_atom_pairs = set()
 
     for i, atom1 in enumerate(atoms):
 
+        # uniquement N/O
         if atom1.element not in ['N', 'O']:
+            continue
+
+        # exclure backbone
+        if atom1.name in BACKBONE_ATOMS:
             continue
 
         for atom2 in atoms[i + 1:]:
@@ -97,11 +122,59 @@ def detect_hydrogen_bonds(atoms):
             if atom2.element not in ['N', 'O']:
                 continue
 
+            if atom2.name in BACKBONE_ATOMS:
+                continue
+
+            # même résidu
+            if (
+                atom1.chain == atom2.chain
+                and
+                atom1.res_id == atom2.res_id
+            ):
+                continue
+
+            # éviter résidus proches
+            if abs(atom1.res_id - atom2.res_id) <= 3:
+                continue
+
+            pair_type = (
+                atom1.residue,
+                atom2.residue
+            )
+
+            # seulement AU / CG / GU
+            if pair_type not in VALID_ATOM_PAIRS:
+                continue
+
+            # vérifier vrais atomes Watson-Crick
+            if (
+                atom1.name,
+                atom2.name
+            ) not in VALID_ATOM_PAIRS[pair_type]:
+                continue
+
+            # éviter doublons
+            atom_pair = tuple(sorted([
+                (atom1.res_id, atom1.name),
+                (atom2.res_id, atom2.name)
+            ]))
+
+            if atom_pair in seen_atom_pairs:
+                continue
+
+            seen_atom_pairs.add(atom_pair)
+
             dist = atom1.distance(atom2)
 
-            hbond = HydrogenBond(atom1, atom2, dist)
+            hbond = HydrogenBond(
+                atom1,
+                atom2,
+                dist
+            )
 
-            if hbond.is_valid():
+            # cutoff imposé
+            if hbond.is_valid(cutoff=3.0):
+
                 hbonds.append(hbond)
 
     return hbonds
@@ -109,6 +182,15 @@ def detect_hydrogen_bonds(atoms):
 # 3.3 Infer Base Pairs
 
 def infer_base_pairs(hbonds):
+
+    EXPECTED_HBONDS = {
+        ("C", "G"): 3,
+        ("G", "C"): 3,
+        ("A", "U"): 2,
+        ("U", "A"): 2,
+        ("G", "U"): 2,
+        ("U", "G"): 2
+    }
 
     pair_counts = defaultdict(int)
 
@@ -126,27 +208,55 @@ def infer_base_pairs(hbonds):
             hb.acceptor.residue
         )
 
-        if res1 != res2:
-            pair_counts[(res1, res2)] += 1
-            pair_counts[(res2, res1)] += 1
+        if res1 == res2:
+            continue
+
+        # évite voisins proches
+        if abs(res1[1] - res2[1]) <= 3:
+            continue
+
+        pair_type = (res1[2], res2[2])
+
+        # seulement AU / CG / GU
+        if pair_type not in EXPECTED_HBONDS:
+            continue
+
+        pair = tuple(sorted([res1, res2]))
+
+        pair_counts[pair] += 1
 
     base_pairs = []
-    visited = set()
 
-    for (res1, res2), count in pair_counts.items():
+    used = set()
 
-        if count >= 2 and (res2, res1) not in visited:
+    for (res1, res2), count in sorted(
+        pair_counts.items(),
+        key=lambda x: -x[1]
+    ):
 
-            base_pairs.append(
-                BasePair(
-                    res1[1],
-                    res2[1],
-                    res1[2],
-                    res2[2]
-                )
+        pair_type = (res1[2], res2[2])
+
+        required = EXPECTED_HBONDS[pair_type]
+
+        # nombre minimal de H-bonds
+        if count < required:
+            continue
+
+        # un seul partenaire
+        if res1 in used or res2 in used:
+            continue
+
+        base_pairs.append(
+            BasePair(
+                res1[1],
+                res2[1],
+                res1[2],
+                res2[2]
             )
+        )
 
-            visited.add((res1, res2))
+        used.add(res1)
+        used.add(res2)
 
     return base_pairs
 
