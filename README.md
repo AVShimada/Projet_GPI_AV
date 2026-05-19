@@ -41,7 +41,7 @@ Track list of the project advancement :
 - [x] Relaunch concatenate on windows to get a .exe right now its only an executable for Linux or terminal python one
 - [x] Modif github repository -> Script Python + Exec linux/windows / Executable GUI linux/windows / Output PDB 
 - [x] Zip for Linux and Windows Seperate
-- [ ] RESULTAT DOIT AVOIR SEQUENCE ARN + BRACKET PAS JUSTE BRACKET /!\
+- [x] RESULTAT DOIT AVOIR SEQUENCE ARN + BRACKET PAS JUSTE BRACKET /!\
 - [ ] Annotation of the code
 - [ ] Version that use package to limit of line in the main script
 - [ ] Get the first line of the PDB file to get the title -> What is this protein to at least show it in terminal
